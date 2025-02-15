@@ -1,10 +1,7 @@
 package com.example.parking_space_api.ParkingSpace;
 
 import com.example.parking_space_api.User.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
@@ -17,6 +14,9 @@ public class ParkingSpace {
     private Double fee_per_hour;
     private Double fee_per_day;
     private Boolean isElectric;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User author;
     private String image_url;
 

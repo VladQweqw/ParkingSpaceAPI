@@ -2,15 +2,12 @@ package com.example.parking_space_api.User;
 
 import com.example.parking_space_api.ParkingSpace.ParkingSpace;
 import com.example.parking_space_api.Vehicle.Vehicle;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.HashSet;
 
 @Entity
-@Table
+@Table(name = "users")
 public class User {
 
     @Id
@@ -18,7 +15,11 @@ public class User {
     private Long id;
     private String name;
     private Integer age;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private HashSet<ParkingSpace> uploaded_parking_spaces = new HashSet<>();
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private HashSet<Vehicle> vehicles_owned = new HashSet<>();
 
     public User() {

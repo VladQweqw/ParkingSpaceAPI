@@ -2,10 +2,7 @@ package com.example.parking_space_api.Vehicle;
 
 import com.example.parking_space_api.ParkingSpace.ParkingSpace;
 import com.example.parking_space_api.User.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.HashSet;
 
@@ -20,6 +17,9 @@ public class Vehicle {
     private String type;
     private String vehicle_type;
     private String fuel_type;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User owner;
 
     public Vehicle() {
