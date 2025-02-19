@@ -17,6 +17,7 @@ public class Vehicle {
     private String type;
     private String vehicle_type;
     private String fuel_type;
+    private String nickname;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -24,14 +25,6 @@ public class Vehicle {
 
     public Vehicle() {
         
-    }
-
-    public Vehicle(String model, String type, String vehicle_type, String fuel_type, User owner) {
-        this.model = model;
-        this.type = type;
-        this.vehicle_type = vehicle_type;
-        this.fuel_type = fuel_type;
-        this.owner = owner;
     }
 
     @Override
@@ -42,8 +35,26 @@ public class Vehicle {
                 ", type='" + type + '\'' +
                 ", vehicle_type='" + vehicle_type + '\'' +
                 ", fuel_type='" + fuel_type + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", owner=" + owner +
                 '}';
+    }
+
+    public Vehicle(User owner, String nickname, String fuel_type, String vehicle_type, String type, String model) {
+        this.owner = owner;
+        this.nickname = nickname;
+        this.fuel_type = fuel_type;
+        this.vehicle_type = vehicle_type;
+        this.type = type;
+        this.model = model;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     public void setId(Long id) {
