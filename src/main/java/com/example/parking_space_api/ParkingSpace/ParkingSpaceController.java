@@ -1,9 +1,7 @@
 package com.example.parking_space_api.ParkingSpace;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,28 @@ public class ParkingSpaceController {
     public List<ParkingSpace> getParkings() {
         return parkingSpaceService.getParkings();
     }
+
+    @GetMapping(path = {"id"})
+    public ParkingSpace getParkingSpaceById(
+            @PathVariable("id") Long id
+    ) {
+        return parkingSpaceService.getParkingById(id);
+    }
+
+    @PostMapping
+    public ParkingSpace createParkingSpace(
+            @RequestBody ParkingSpace parking
+    ) {
+        return parkingSpaceService.createParkingSpace(parking);
+    }
+
+    @PutMapping(path = "{id}")
+    public ParkingSpace updateParkingSpace(
+            @PathVariable("id") Long id,
+            @RequestBody ParkingSpaceUpdate update
+    ) {
+        return parkingSpaceService.updateParkingSpace(id, update);
+    }
+
 
 }
