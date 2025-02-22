@@ -19,7 +19,7 @@ public class ParkingSpaceController {
         return parkingSpaceService.getParkings();
     }
 
-    @GetMapping(path = {"id"})
+    @GetMapping(path = "{id}")
     public ParkingSpace getParkingSpaceById(
             @PathVariable("id") Long id
     ) {

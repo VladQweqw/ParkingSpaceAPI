@@ -14,7 +14,9 @@ public class User {
     @GeneratedValue
     private Long id;
     private String name;
-    private Integer age;
+    private Integer age = 18;
+    private String email;
+    private String password;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private HashSet<ParkingSpace> uploaded_parking_spaces = new HashSet<>();
@@ -26,23 +28,55 @@ public class User {
         
     }
 
-    public User(String name, Integer age, HashSet<ParkingSpace> uploaded_parking_spaces, HashSet<Vehicle> vehicles_owned) {
-        this.name = name;
-        this.age = age;
-        this.uploaded_parking_spaces = uploaded_parking_spaces;
-        this.vehicles_owned = vehicles_owned;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", uploaded_parking_spaces=" + uploaded_parking_spaces +
                 ", vehicles_owned=" + vehicles_owned +
                 '}';
     }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+
+    }
+
+    public User(String name, Integer age, String email, String password, HashSet<ParkingSpace> uploaded_parking_spaces, HashSet<Vehicle> vehicles_owned) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.uploaded_parking_spaces = uploaded_parking_spaces;
+        this.vehicles_owned = vehicles_owned;
+    }
+
+    public Boolean checkPassword(String input_password) {
+        return this.password.equals(input_password);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
