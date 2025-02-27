@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class ParkingSpace {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -15,7 +14,7 @@ public class ParkingSpace {
     private Double fee_per_day;
     private Boolean isElectric;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User author;
     private String image_url;

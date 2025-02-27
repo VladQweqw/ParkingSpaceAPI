@@ -1,5 +1,7 @@
 package com.example.parking_space_api.ParkingSpace;
 
+import com.example.parking_space_api.User.User;
+import com.example.parking_space_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +10,11 @@ import java.util.List;
 @Service
 public class ParkingSpaceService {
     private ParkingSpaceRepository parkingSpaceRepository;
+    private UserRepository userRepository;
     @Autowired
-    ParkingSpaceService(ParkingSpaceRepository parkingSpaceRepository) {
+    ParkingSpaceService(ParkingSpaceRepository parkingSpaceRepository, UserRepository userRepository) {
         this.parkingSpaceRepository = parkingSpaceRepository;
+        this.userRepository = userRepository;
     }
 
     public List<ParkingSpace> getParkings() {
@@ -25,7 +29,13 @@ public class ParkingSpaceService {
         return found;
     }
 
-    public ParkingSpace createParkingSpace(ParkingSpace parking) {
+    public ParkingSpace createParkingSpace(ParkingSpace parking, Long id) {
+        System.out.println(id);
+        User user = userRepository.findById(id).orElseThrow(() -> {
+            throw new IllegalStateException("Invalid author ID");
+        });
+
+        parking.setAuthor(user);
         return parkingSpaceRepository.save(parking);
     }
 

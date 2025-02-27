@@ -28,9 +28,10 @@ public class ParkingSpaceController {
 
     @PostMapping
     public ParkingSpace createParkingSpace(
-            @RequestBody ParkingSpace parking
+            @RequestBody ParkingSpace parking,
+            @RequestParam(required = true) Long author
     ) {
-        return parkingSpaceService.createParkingSpace(parking);
+        return parkingSpaceService.createParkingSpace(parking, author);
     }
 
     @PutMapping(path = "{id}")

@@ -19,11 +19,6 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping("create") // Fix: Added unique path
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
-
     @PostMapping("login") // Fix: Added unique path
     public User loginUser(@RequestBody LoginDetails loginDetails) {
         return userService.loginUser(loginDetails);

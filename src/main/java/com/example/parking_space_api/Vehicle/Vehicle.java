@@ -9,7 +9,6 @@ import java.util.HashSet;
 @Entity
 @Table
 public class Vehicle {
-
     @Id
     @GeneratedValue
     private Long id;
